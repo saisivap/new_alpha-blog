@@ -1,5 +1,11 @@
 <h1>This is new page</h1>
-
+<% if @article.errors.any? %>
+  <ul>
+    <% @article.errors.full_messages.each do |msg| %>
+     <li> <%= msg %></li>
+    <%end %>
+  </ul>
+<%end %>
 <%# @article.each do |art|%>
   <%#=art %>
 <%# end %>
