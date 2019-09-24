@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
     # respond_to do |f|
       if @article.save
         flash[:notice]="Article was sucessfully created"
-         redirect_to articles_path(@article)
+         redirect_to article_path(@article)
          # f.html(redirect_to articles_path(@article),notice: 'now it is created ')
       else
         render 'new'
@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
   end
   def show
 
-    @article=Article.find(params[:format])
+    @article=Article.find(params[:id])
     # logger = Logger.new STDOUT
     logger.info"show articleinfo"
     logger.info @article
