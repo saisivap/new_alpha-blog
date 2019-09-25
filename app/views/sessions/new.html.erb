@@ -1,0 +1,29 @@
+<h1 align="center">Login to Alphablog</h1>
+
+<%# if @user.errors.any? %>
+<!--  <ul>-->
+    <%# @user.errors.full_messages.each do |msg| %>
+<!--      <li> <%#= msg %></li>-->
+    <%#end %>
+<!--  </ul>-->
+<%#end %>
+<%# @article.each do |art|%>
+<%#=art %>
+<%# end %>
+
+<%= form_for(:session, url: login_path) do |f| %>
+  <p>
+    <%=f.label :email %><br/>
+    <%= f.email_field :email %>
+  </p>
+<!--  <p>-->
+<!--    <%#=f.label :email %><br/>-->
+    <%#= f.text_field :email %>
+<!--  </p>-->
+  <p>
+    <%=f.label :password %><br/>
+    <%= f.password_field :password %>
+  </p>
+  <%= f.submit "Login", class: "btn btn-success btn-lg" %>
+<%end %><br/><br/>
+<%= link_to "sign up",signup_path %>
