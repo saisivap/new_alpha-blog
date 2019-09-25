@@ -1,23 +1,4 @@
 <h1>This is Index page of Articles</h1>
 
 
-<table>
-  <%= link_to "create new article",new_article_path %>
-  <tr>
-    <th>Title</th>
-    <th>description</th>
-  </tr>
-  <% @my_articles.each do |a| %>
-    <tr>
-    <td> <%= a.title %></td>
-    <td> <%= a.description %></td>
-      <td><small>Created by: <%= a.user.username if a.user %>
-        <%= time_ago_in_words(a.created_at) %> ago, Last updated:
-      <%= time_ago_in_words(a.updated_at) %> ago</small></td>
-    <td><%= link_to "edit",edit_article_path(a.id) %></td>
-    <td><%= link_to "show",article_path(a.id) %></td>
-      <td><%= link_to "delete",article_path(a.id), method: :delete, data: {confirm: "are you sure?"} %></td>
-<!--    <td><%#= link_to "delete",edit_articles_path %>></td>-->
-    </tr>
-  <% end %>
-</table>
+<%= render 'article',obj: @my_articles %>
