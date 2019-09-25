@@ -1,11 +1,16 @@
-<h1>This is show method</h1>
+<h1>Title: <%= @article.title%></h1>
+<% if @article.user %>
+<li>Username: <%= link_to @article.user.username,user_path(@article.user) %></li>
+<li>Email: <%= @article.user.email %></li>
+<li>    <%= pluralize(@article.user.articles.count,"article")  %></li>
 <%# @article.each do |a| %>
 <!--  <ul>-->
     <%#=a %>
 <!--  </ul>-->
 <%# end %>
-
+  <% end %>
+<hr>
 <li>title: <%= @article.title%></li>
 <li>description:<%=  @article.description %></li><br/><br/>
 <%= link_to "edit this article",edit_article_path(@article) %> |
-<%= link_to "back to articles listing",articles_path %>
+<%= link_to "back to articles listia.ng",articles_path %>
