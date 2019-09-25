@@ -8,6 +8,6 @@ Rails.application.routes.draw do
 
   get 'signup' , to:"users#new"
 
-  resource :users,except: [:new]
+  resources :users,except: [:new]
 
 end
