@@ -8,7 +8,7 @@
     <tr>
       <td> <%= link_to a.title ,article_path(a.id) %></td>
       <td> <%= a.description %></td>
-      <% if logged_in? && current_user==a.user %>
+      <% if logged_in? && current_user==a.user || current_user.admin? %>
           <td><small>Created by: <%= a.user.username if a.user %>
             <%= time_ago_in_words(a.created_at) %> ago, Last updated:
             <%= time_ago_in_words(a.updated_at) %> ago</small></td>
