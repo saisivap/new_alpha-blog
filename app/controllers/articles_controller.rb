@@ -1,12 +1,14 @@
 class ArticlesController < ApplicationController
   before_action :set_id, only: [ :edit, :show, :update, :destroy]
+  before_action :require_user, except: [ :index, :show,:home ]
+  before_action :require_same_user,only: [:edit,:update,:destroy]
   logger = Logger.new STDOUT
   def home
-
+    redirect_to articles_path if logged_in?
   end
   def index
-    @articles=Article.paginate(:page => params[:page], :per_page => 4)
-  end
+    @articles=Article.all
+    end
   def about
 
   end
@@ -60,11 +62,17 @@ class ArticlesController < ApplicationController
   end
 
   private
-  def set_id
-    @article=Article.find(params[:id])
-  end
+    def set_id
+      @article=Article.find(params[:id])
+    end
     def article_params
         params.require(:article).permit(:title,:description)
     end
-
+  def require_same_user
+    if current_user != @article.user
+      flash[:danger]="you can only edit and delete your articles"
+      redirect_to root_path
+    end
+  end
 end
+
